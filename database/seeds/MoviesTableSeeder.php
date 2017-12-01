@@ -15,9 +15,9 @@ class MoviesTableSeeder extends Seeder
         $faker = Faker::create();
         
         $dataCategories = DB::table('categories')->pluck('id')->toArray();
-
+    
         foreach(range(1, 50) as $home) {
-            DB::table('movies')->insert([
+            DB::table('movies')->insert([        
                 'category_id' => $faker->randomElement($dataCategories),
                 'title' => $faker->name,
                 'year' => $faker->year($max = 'now'),

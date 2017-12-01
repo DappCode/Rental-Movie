@@ -18,7 +18,7 @@
                 <div class="col-12 col-md-4">
                     <div class="col">
                         @if($movie->photo)
-                            <a href="{{ route('movie.detail', $movie->id)}}"><img src="{{ $movie->photo }}" class="card-img-top primary-photo"> </a>
+                            <a href="{{ route('movie.detail', $movie->id)}}"><img src="{{ $movie->photo }}" class="card-img-top img-movie primary-photo"> </a>
 
                         @else
                             <a href="{{ route('movie.detail', $movie->id)}}"><img src="/photos/no-avatar.png" class="card-img-top primary-photo" alt="No Avatar"> </a>
@@ -27,12 +27,17 @@
                         <div class="card-img-overlay text-center">
                             <h3 class="card-title">{{ $movie->title }}</h3>
                             <p class="card-text">Category : <span class="cat-movie"> {{ $movie->moviesCategories->categories }}, </span></p>
-                            <a href="{{ route('movie.detail', $movie->id)}}"> <button type="button" class="btn btn-primary btn-pinjam" > READ MORE </button> </a>
+                            <form action="{{ route('movie.destroy', $movie->id) }}" method="POST">
+                            <input type="hidden" name="_method" value="delete" />
+                            {{ csrf_field() }}
+                            <button type="submit" class="btn btn-danger" onclick="return confirm('kamu yakin ingin menghapus {{ $movie->title }} ?')" >Deleted</button>
+                            </form>
+                            <a href="{{ route('movies.edit', $movie->id)}}"> <button type="button" class="btn btn-primary btn-pinjam" > EDIT </button> </a>
                         </div>
                     </div>
                 </div>
                 @endforeach
-
+                <a href="{{route('movie.create')}}"> <button type="button" class="btn btn-primary btn-pinjam" > Add MOVIES </button> </a>
                 @if ($movies->lastPage() > 1)
                     <ul class="pagination ml-auto">
                         <li class="{{ ($movies->currentPage() == 1) ? ' disabled' : '' }} page-item">

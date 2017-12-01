@@ -15,12 +15,16 @@ class CreateMoviesTable extends Migration
     {
         Schema::create('movies', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('category_id')->unsigned();
+            $table->integer('category_id')->unsigned(); 
             $table->string('title');
             $table->integer('year');
             $table->string('description');
-            $table->string('poster')->nullable();
+            $table->string('photo')->nullable();
             $table->timestamps();            
+        });
+
+        Schema::table('movies', function(Blueprint $table) {
+            $table->foreign('category_id')->references('id')->on('categories')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 

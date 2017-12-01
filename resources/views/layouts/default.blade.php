@@ -5,11 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/style.css">
     <title>@yield('title')</title>
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <div class="container">
+      
         <a class="navbar-brand" href="#">HOME</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample07" aria-controls="navbarsExample07" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -18,10 +20,10 @@
         <div class="collapse navbar-collapse" id="navbarsExample07">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-              <a class="nav-link" href="#"> Logout <span class="sr-only">(current)</span></a>
+              <a class="nav-link" href="{{ route('auth.destroy') }}"> Logout <span class="sr-only">(current)</span></a>
             </li>
           </ul>
-          <form class="form-inline my-2 my-md-0 mx-3" method="GET" action="#">
+          <form class="form-inline my-2 my-md-0 mx-3" method="GET" action="{{route('movie.search')}}">
             <input name="keyword" class="form-control" type="text" placeholder="Search">
           </form>
         </div>
