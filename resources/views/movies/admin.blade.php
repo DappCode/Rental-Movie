@@ -11,8 +11,10 @@
     
         <div class="col-12">   
             <h1 class= "title">Movie List</h1>
+            <a href="{{route('movie.create')}}"> <button type="button" class="btn btn-primary btn-pinjam" > Add MOVIES </button> </a>
+            <a href="{{route('movie.create')}}"> <button type="button" class="btn btn-primary btn-pinjam" > Client List </button> </a>
         </div>
-    
+
         <div class="row no-gutters">
             @foreach($movies as $movie)
                 <div class="col-12 col-md-4">
@@ -30,14 +32,13 @@
                             <form action="{{ route('movie.destroy', $movie->id) }}" method="POST">
                             <input type="hidden" name="_method" value="delete" />
                             {{ csrf_field() }}
-                            <button type="submit" class="btn btn-danger" onclick="return confirm('kamu yakin ingin menghapus {{ $movie->title }} ?')" >Deleted</button>
-                            </form>
+                            <a href="{{ route('movie.more', $movie->id)}}"> <button type="button" class="btn btn-primary btn-pinjam" > READ MORE </button> </a>
                             <a href="{{ route('movies.edit', $movie->id)}}"> <button type="button" class="btn btn-primary btn-pinjam" > EDIT </button> </a>
                         </div>
                     </div>
                 </div>
                 @endforeach
-                <a href="{{route('movie.create')}}"> <button type="button" class="btn btn-primary btn-pinjam" > Add MOVIES </button> </a>
+                
                 @if ($movies->lastPage() > 1)
                     <ul class="pagination ml-auto">
                         <li class="{{ ($movies->currentPage() == 1) ? ' disabled' : '' }} page-item">

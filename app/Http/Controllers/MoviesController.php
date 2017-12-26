@@ -92,6 +92,13 @@ class MoviesController extends Controller
             return view('movies.detail', compact('movies'));
         }
 
+        public function detailAdmin($id)
+        {
+            $movies = $this->movie->find($id);
+            
+            return view('movies.more', compact('movies'));
+        }
+
         public function destroy($id)
         {
     

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Database\Seeder;
 
 class AuthController extends Controller
 {
@@ -28,9 +29,11 @@ class AuthController extends Controller
     {
         $email = $request->input('email');
         $password = $request->input('password');
-
         $dataLogin = ['email' => $email, 'password' => $password];
+        
+
         if(Auth::attempt($dataLogin)) {
+            
            return redirect('/movie');
         }
         
